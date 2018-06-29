@@ -8,6 +8,29 @@ class Game
 		@mate = false
 	end
 
+	def run
+		answer = get_answer.to_s
+
+		if (isValid(answer))
+			makeMove(answer)
+		end
+	end
+
+	def isValid(answer)
+
+		if (answer.length == 4)
+			if (answer[1] == "," || answer[2] == ",")
+				return true
+			end
+		end
+
+		return false
+	end
+
+	def get_answer
+		return gets
+	end
+
 	def get_table
 		return @table
 	end

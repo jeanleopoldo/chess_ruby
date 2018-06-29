@@ -17,17 +17,19 @@ require_relative 'game.rb'
 
 		if (answer.to_i == 1)
 			@game = Game.new
-
-			while @game.is_mate == false
+			
+			while !@game.is_mate
 				draw
+				@game.run
 			end
+
 		end
 	end
 
 	def draw
 		gui = GUITable.new(@control)
 		gui.draw_table
-		get_answer
+		
 	end
 
 	def get_answer
