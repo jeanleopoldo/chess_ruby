@@ -1,65 +1,17 @@
 
-
-class Piece
-
-	
-
-
-end
-
-
-
-class Position
-	def initialize(x, y)
-		@pos_x = x
-		@pos_y = y
-		@piece
-	end
-
-	def set_color(color)
-		@color = color
-	end
-
-	def get_color
-		return @color
-	end
-
-
-	def get_piece
-		return @piece
-	end
-
-	def set_piece(piece)
-		@piece = piece
-	end
-
-	def get_x
-		return @pos_x
-	end
-
-	def get_y
-		return @pos_y
-	end
-
-	def get_color
-		return @color
-	end
-
-end
-
 class Table
-
+require_relative "position.rb"
 
 	def initialize(row_size, col_size)
-		@row = Array.new(col_size)
+		
+		@table = Array.new(row_size)
 		@col_size = col_size
 		create_table
-		draw_table
 	end
 
 	def create_table
 
-		for i in 0..@row.size-1
+		for i in 0..@table.size-1
 
 			col = Array.new(@col_size)
 			for j in 0..col.size-1
@@ -70,11 +22,10 @@ class Table
 			
 			end
 
-			@row[i] = col
+			@table[i] = col
 		
 		end
 	end
-
 
 	def define_color(position)
 		i = position.get_x
@@ -82,16 +33,16 @@ class Table
 
 		if (i % 2 == 0)
 			if (j % 2 == 0)
-				position.set_color(" w ")
+				position.set_color(" ww ")
 			else
-				position.set_color(" b ")
+				position.set_color(" bb ")
 			end
 
 		else
 			if (j % 2 == 1)
-				position.set_color(" w ")
+				position.set_color(" ww ")
 			else
-				position.set_color(" b ")
+				position.set_color(" bb ")
 			end
 		end
 	end
@@ -103,15 +54,18 @@ class Table
 		return position
 	end
 
+	def get_table
+		return @table
+	end
+
 	def draw_table
 
 		line = ""
 
-		for i in 0..@row.size-1
-			col = @row[i]
+		for i in 0..@table.size-1
+			col = @table[i]
 			for j in 0..col.size-1
-
-				
+		
 				position = col[j]
 
 				line = "#{line} | #{position.get_color} |"
@@ -124,8 +78,3 @@ class Table
 		end
 	end
 end
-
-ROW_SIZE = 8
-COL_SIZE = 8
-Table.new(ROW_SIZE, COL_SIZE)
-
