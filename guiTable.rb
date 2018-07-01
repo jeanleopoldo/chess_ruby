@@ -10,9 +10,10 @@ class GUITable
 
 		line = ""
 
-		puts " ***********************************************************************"
+		puts " ***************************************************************************************"
 
 		for i in 0..@row.size-1
+
 			col = @row[i]
 			for j in 0..col.size-1
 
@@ -22,7 +23,7 @@ class GUITable
 				if position.get_piece == nil
 					line = "#{line} | #{position.get_color} |"
 				else
-					line = "#{line} | #{position.get_piece.symbol} |"
+					line = "#{line} | #{position.get_piece.get_symbol} |"
 				end
 				
 				if (j == 7)
@@ -31,6 +32,11 @@ class GUITable
 				end
 			end
 		end
-		puts " ***********************************************************************"
+		puts " ***************************************************************************************"
+	end
+
+
+	def show_moves(from, to)
+		puts "(#{from.get_x.to_s}, #{from.get_y.to_s}) >> (#{to.get_x.to_s}, #{to.get_y.to_s})"
 	end
 end

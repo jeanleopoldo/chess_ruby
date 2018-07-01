@@ -10,17 +10,14 @@ class Game
 
 	def make_move(from, to)
 		@round = @round + 1
-		#to = get_selected_positions(answer)[1]
 
-		#piece = from.get_piece
+		_piece = from.get_piece
 
 		#if (piece != nil)
 			#if to.get_piece == nil
 				#make_move(piece)
 
 		#end
-
-
 		
 	end
 

@@ -13,9 +13,9 @@ require_relative 'game.rb'
 
 		GUIInit.new
 
-		answer = get_answer
+		_answer = get_answer
 
-		if (answer.to_i == 1 && answer.length == 2)
+		if (_answer.to_i == 1 && _answer.length == 2)
 			@game = Game.new
 			@gui = GUITable.new(@control)
 
@@ -32,12 +32,14 @@ require_relative 'game.rb'
 		while !@game.is_mate
 			
 			draw	
-			answer = get_answer.to_s
+			_answer = get_answer.to_s
 
-			if (is_valid(answer))
-				from = get_selected_positions(answer)[0]
-				to = get_selected_positions(answer)[1]
-				puts "AQUI, HEINHÔ"
+			if (is_valid(_answer))
+				
+				_from = get_selected_positions(_answer)[0]
+				_to = get_selected_positions(_answer)[1]
+				@gui.show_moves(_from, _to)
+				@game.make_move(_from, _to)
 			else
 				puts "Invalid command"
 			end
@@ -46,21 +48,21 @@ require_relative 'game.rb'
 
 	def get_selected_positions(answer)
 
-		selected_positions = Array.new(2)
+		_selected_positions = Array.new(2)
 
-		x1 = answer[0].to_i
-		y1 = answer[2].to_i
+		_x1 = answer[0].to_i
+		_y1 = answer[2].to_i
 
-		p1 = @game.get_table.get_position(x1, y1)
-		selected_positions[0] = p1
+		_p1 = @game.get_table.get_position(_x1, _y1)
+		_selected_positions[0] = _p1
 
-		x2 = answer[5].to_i
-		y2 = answer[7].to_i
+		_x2 = answer[5].to_i
+		_y2 = answer[7].to_i
 
-		p2 = @game.get_table.get_position(x2, y2)
-		selected_positions[1] = p2
+		_p2 = @game.get_table.get_position(_x2, _y2)
+		_slected_positions[1] = _p2
 
-		return selected_positions
+		return _selected_positions
 
 	end
 
