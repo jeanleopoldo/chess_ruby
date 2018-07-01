@@ -1,12 +1,19 @@
 
 class Table
 require_relative "position.rb"
+require_relative "piece.rb"
 
 	def initialize(row_size, col_size)
 		
 		@table = Array.new(row_size)
+
+		@white = Array.new(16)
+		@black = Array.new(16)
+		
 		@col_size = col_size
+
 		create_table
+		create_pieces
 	end
 
 	def create_table
@@ -49,7 +56,7 @@ require_relative "position.rb"
 
 
 	def get_position(i, j)
-		col = @row[i]
+		col = @table[i]
 		position = col[j]
 		return position
 	end
@@ -75,6 +82,19 @@ require_relative "position.rb"
 					line = ""
 				end
 			end
+		end
+	end
+
+	def create_pieces
+
+		for i in 0..15
+			_piece = Piece.new("W")
+			@white[i] = _piece
+		end
+
+		for i in 0..15
+			_piece = Piece.new("B")
+			@black[i] = _piece
 		end
 	end
 end

@@ -8,27 +8,20 @@ class Game
 		@mate = false
 	end
 
-	def run
-		answer = get_answer.to_s
+	def make_move(from, to)
+		@round = @round + 1
+		#to = get_selected_positions(answer)[1]
 
-		if (isValid(answer))
-			makeMove(answer)
-		end
-	end
+		#piece = from.get_piece
 
-	def isValid(answer)
+		#if (piece != nil)
+			#if to.get_piece == nil
+				#make_move(piece)
 
-		if (answer.length == 4)
-			if (answer[1] == "," || answer[2] == ",")
-				return true
-			end
-		end
+		#end
 
-		return false
-	end
 
-	def get_answer
-		return gets
+		
 	end
 
 	def get_table
@@ -37,23 +30,6 @@ class Game
 
 	def is_mate
 		return @mate
-	end
-
-
-	def create_pieces
-		@white = Array.new(16)
-		@black = Array.new(16)
-
-
-		for i in 0..15
-			piece = Piece.new("W")
-			white[i] = piece
-		end
-
-		for i in 0..15
-			piece = Piece.new("B")
-			black[i] = piece
-		end
 	end
 end
 
