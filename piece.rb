@@ -11,8 +11,17 @@ class Piece
 		return @color
 	end
 
-	def set_symbol(symbol)
-		@symbol = "#{symbol}#{@color}"
+	def set_symbol
+		@symbol = "#{@type}#{@color}"
+	end
+
+	def get_type
+		return @type
+	end
+
+	def set_type(type)
+		@type = type
+		set_symbol
 	end
 
 	def get_symbol

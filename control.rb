@@ -38,8 +38,13 @@ require_relative 'game.rb'
 				
 				_from = get_selected_positions(_answer)[0]
 				_to = get_selected_positions(_answer)[1]
-				@gui.show_moves(_from, _to)
-				@game.make_move(_from, _to)
+
+				if _from.get_piece != nil
+					@gui.show_moves(_from, _to)
+					@game.make_move(_from, _to)
+				else
+					puts "No piece at this position"
+				end
 			else
 				puts "Invalid command"
 			end
@@ -60,7 +65,7 @@ require_relative 'game.rb'
 		_y2 = answer[7].to_i
 
 		_p2 = @game.get_table.get_position(_x2, _y2)
-		_slected_positions[1] = _p2
+		_selected_positions[1] = _p2
 
 		return _selected_positions
 
@@ -74,13 +79,23 @@ require_relative 'game.rb'
 					return true
 				end
 			end
+		else
+			define_answer_length_message(answer)
 		end
-
 		return false
+	end
+
+	def define_answer_length_message(answer)
+		if answer.length < 9
+			puts "Input seems to be smaller than it's supposed to be."
+		else
+			puts "Input seems to be bigger than it's supposed to be."
+		end
 	end
 		
 	def draw
-		@gui.draw_table
+		round = @game.get_round
+		@gui.draw_table(round)
 	end
 
 	def get_answer

@@ -23,6 +23,54 @@ require_relative "piece.rb"
 		set_black_pieces
 	end
 
+	def move(from, to)
+
+		_piece = from.get_piece
+
+		case _piece.get_type
+
+		when " Ro "
+			
+		when " Kn "
+			
+		when " Bi "
+			puts "bishop"
+		when " Ki "
+			if (king_can_move(from, to)) 
+				if !is_same_color
+					from.set_piece(nil)
+					to.set_piece(_piece)
+					return true
+				end
+			end
+			return false
+
+		when " Qu "
+			puts "queen"
+		when " Pa "
+			puts "pawn"
+		else
+		end
+
+	end
+
+	def king_can_move(from, to)
+		if ((from.get_x - to.get_x <= 1) && (from.get_x - to.get_x >= -1)) || ((to.get_x - from.get_x) <= 1 && (to.get_x - from.get_x <= 1)) 
+			if (from.get_y - to.get_y <= 1) &&  (from.get_y - to.get_y >= -1) || (to.get_y - from.get_y <= 1) && (to.get_y - from.get_y >= -1)
+				return true
+			end
+		end
+		puts "Cannot move there"
+		return false
+	end
+
+	def is_same_color
+		if to.get_piece.get_color == from.get_piece.get_color
+			return true
+		end
+		puts "You're trying to eat your own piece"
+		return false
+	end
 	def set_white_pieces
 
 		_index = 0
@@ -141,25 +189,25 @@ require_relative "piece.rb"
 
 		for i in 8..15
 			_piece = @white[i]
-			_piece.set_symbol(" Pa ")
+			_piece.set_type(" Pa ")
 		end
 
 		_piece = @white[0]
-		_piece.set_symbol(" Ro ")
+		_piece.set_type(" Ro ")
 		_piece = @white[1]
-		_piece.set_symbol(" Kn ")
+		_piece.set_type(" Kn ")
 		_piece = @white[2]
-		_piece.set_symbol(" Bi ")
+		_piece.set_type(" Bi ")
 		_piece = @white[3]
-		_piece.set_symbol(" Ki ")
+		_piece.set_type(" Ki ")
 		_piece = @white[4]
-		_piece.set_symbol(" Qu ")
+		_piece.set_type(" Qu ")
 		_piece = @white[5]
-		_piece.set_symbol(" Bi ")
+		_piece.set_type(" Bi ")
 		_piece = @white[6]
-		_piece.set_symbol(" Kn ")
+		_piece.set_type(" Kn ")
 		_piece = @white[7]
-		_piece.set_symbol(" Ro ")
+		_piece.set_type(" Ro ")
 
 	end
 
@@ -174,25 +222,25 @@ require_relative "piece.rb"
 
 		for i in 0..7
 			_piece = @black[i]
-			_piece.set_symbol(" Pa ")
+			_piece.set_type(" Pa ")
 		end
 
 		_piece = @black[8]
-		_piece.set_symbol(" Ro ")
+		_piece.set_type(" Ro ")
 		_piece = @black[9]
-		_piece.set_symbol(" Kn ")
+		_piece.set_type(" Kn ")
 		_piece = @black[10]
-		_piece.set_symbol(" Bi ")
+		_piece.set_type(" Bi ")
 		_piece = @black[11]
-		_piece.set_symbol(" Ki ")
+		_piece.set_type(" Ki ")
 		_piece = @black[12]
-		_piece.set_symbol(" Qu ")
+		_piece.set_type(" Qu ")
 		_piece = @black[13]
-		_piece.set_symbol(" Bi ")
+		_piece.set_type(" Bi ")
 		_piece = @black[14]
-		_piece.set_symbol(" Kn ")
+		_piece.set_type(" Kn ")
 		_piece = @black[15]
-		_piece.set_symbol(" Ro ")
+		_piece.set_type(" Ro ")
 		
 	end
 end

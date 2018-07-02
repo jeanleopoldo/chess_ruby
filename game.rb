@@ -9,16 +9,33 @@ class Game
 	end
 
 	def make_move(from, to)
-		@round = @round + 1
-
 		_piece = from.get_piece
 
-		#if (piece != nil)
-			#if to.get_piece == nil
-				#make_move(piece)
+		if is_turn(_piece)
+			if @table.move(from, to)
+				add_round
+			else
+				puts "Something went wrong"
+			end
+		end
+	end
 
-		#end
+	def is_turn(piece)
+
+		if @round % 2 == 0 && piece.get_color == " W" 
+			return true
+		end
 		
+		if @round % 2 == 1 && piece.get_color == " B"
+			return true
+		end
+
+		return false
+
+	end
+
+	def add_round
+		@round = @round + 1
 	end
 
 	def get_table
@@ -27,6 +44,10 @@ class Game
 
 	def is_mate
 		return @mate
+	end
+
+	def get_round
+		return @round
 	end
 end
 
