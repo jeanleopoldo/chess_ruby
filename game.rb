@@ -17,6 +17,8 @@ class Game
 			else
 				puts "Something went wrong"
 			end
+		else
+			puts "Not#{_piece.get_color}'s turn"
 		end
 	end
 

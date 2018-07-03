@@ -10,7 +10,7 @@ class GUITable
 
 		line = ""
 
-		puts "****************************************************************************************"
+		puts "*****************************************************************************************"
 
 		for i in 0..@row.size-1
 
@@ -52,6 +52,6 @@ class GUITable
 
 	def show_moves(from, to)
 		_piece = from.get_piece
-		puts "[#{_piece.get_symbol}->(#{from.get_x.to_s}, #{from.get_y.to_s})] >> (#{to.get_x.to_s}, #{to.get_y.to_s})"
+		puts "[#{_piece.get_symbol}]->(#{from.get_x.to_s}, #{from.get_y.to_s}) >> (#{to.get_x.to_s}, #{to.get_y.to_s})"
 	end
 end

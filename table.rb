@@ -30,14 +30,23 @@ require_relative "piece.rb"
 		case _piece.get_type
 
 		when " Ro "
+			if (is_rook_move(from, to))
+				if !piece_on_the_rook_way(from, to)
+					if !is_same_color(from, to)
+						from.set_piece(nil)
+						to.set_piece(_piece)
+						return true
+				end
+			end
+			return false
 			
 		when " Kn "
 			
 		when " Bi "
 			puts "bishop"
 		when " Ki "
-			if (king_can_move(from, to)) 
-				if !is_same_color
+			if (is_king_move(from, to)) 
+				if !is_same_color(from, to)
 					from.set_piece(nil)
 					to.set_piece(_piece)
 					return true
@@ -49,22 +58,63 @@ require_relative "piece.rb"
 			puts "queen"
 		when " Pa "
 			puts "pawn"
-		else
 		end
 
 	end
 
-	def king_can_move(from, to)
-		if ((from.get_x - to.get_x <= 1) && (from.get_x - to.get_x >= -1)) || ((to.get_x - from.get_x) <= 1 && (to.get_x - from.get_x <= 1)) 
+	def piece_on_the_rook_way(from, to)
+
+		if (from.get_x == to.get_x)
+			y1 = from.get_y+1
+			for i in y1..to.get_y-1
+				if get_position(from.get_x, i).get_piece != nil
+					puts "#{get_position(from.get_x, i).get_piece.get_symbol} is on the way"
+					return true
+				end
+			end
+		end
+
+		if (from.get_y == to.get_y)
+			x1 = from.get_x+1
+
+			for i in x1..to.get_x-1
+
+				if get_position(i, from.get_y) != nil
+					puts "#{get_position(i, from.get_y).get_piece.get_symbol} is on the way"
+					return true
+				end
+			end
+		end
+		return false
+	end
+
+	def is_king_move(from, to)
+		if ((from.get_x - to.get_x <= 1) && (from.get_x - to.get_x >= -1)) || ((to.get_x - from.get_x) <= 1 && (to.get_x - from.get_x <= -1)) 
 			if (from.get_y - to.get_y <= 1) &&  (from.get_y - to.get_y >= -1) || (to.get_y - from.get_y <= 1) && (to.get_y - from.get_y >= -1)
 				return true
 			end
 		end
-		puts "Cannot move there"
+		puts "this is not a king's move"
 		return false
 	end
 
-	def is_same_color
+	def is_rook_move(from, to)
+		x = from.get_x
+		y = from.get_x
+
+		if from.get_x == to.get_x || from.get_y == to.get_y
+			return true
+		end
+		puts "this is not a rook's move"
+		return false
+
+	end
+
+	def is_bishop_move(from, to)
+		
+	end
+
+	def is_same_color(from, to)
 		if to.get_piece.get_color == from.get_piece.get_color
 			return true
 		end

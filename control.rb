@@ -34,7 +34,7 @@ require_relative 'game.rb'
 			draw	
 			_answer = get_answer.to_s
 
-			if (is_valid(_answer))
+			if is_valid(_answer)
 				
 				_from = get_selected_positions(_answer)[0]
 				_to = get_selected_positions(_answer)[1]
